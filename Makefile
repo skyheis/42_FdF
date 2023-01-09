@@ -6,7 +6,7 @@
 #    By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 17:49:20 by ggiannit          #+#    #+#              #
-#    Updated: 2023/01/07 19:20:43 by ggiannit         ###   ########.fr        #
+#    Updated: 2023/01/07 21:09:55 by ggiannit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MLX_PATH = ../minilibx-linux
 DIRSRCS =
 DIROBJS = obj/
 
-FLSRCS = main.c
+FLSRCS = main.c my_minilibx_utils.c
 
 FLOBJS = ${FLSRCS:.c=.o}
 
@@ -39,7 +39,7 @@ ARINC = $(addprefix $(ARUSDDIR),$(ARUSD))
 CC = cc
 AR = ar
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 MLXFLAGS = -lm -lX11 -lXext -lmlx
 
 ###### COLORS ########
