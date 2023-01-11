@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 23:27:15 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/04 14:10:19 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:55:47 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*ft_free_matrix(char **matrix);
 char	*ft_free_matrix_nomat(char **matrix);
 void	ft_sleep_kinda(size_t k);
+int		ft_atoi_hex(char *str);
+int		ft_ishex(char *str);
+int		ft_count_in_str(char *str, char c);
 
 #endif
