@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:31 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/11 19:51:20 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/13 13:12:48 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,9 @@ typedef struct	s_map
 }				t_map;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+/* map */
+int	ft_check_each_line(t_map *map, char *line);
+int	ft_alloc_val(t_map *map, char *line);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:04 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/11 19:28:20 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/12 09:33:25 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_draw(int button, int x, int y, t_mlxvars *vars)
 		{
 			i = 10;
 			mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
-			mlx_string_put(vars->mlx, vars->win, 42, 42, 0xFF342300, "CIAOOO beppe");
+			mlx_string_put(vars->mlx, vars->win, 42, 42, 0xFFFFFFFF, "CIAOOO beppe");
 		}
 	}
 	if (button == 3)

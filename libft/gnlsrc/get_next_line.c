@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:45:52 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/03 19:50:18 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:38:26 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ char	*get_next_line(int fd)
 
 	line = NULL;
 	if (fd == -42)
-		return (ft_free_matrix_nomat(buff_read));
+		return (ft_free_matrix_nomat(buff_read, 4096));
 	if (fd < 0)
 		return (NULL);
 	if (!buff_read[fd] || !ft_search_bsn(buff_read[fd]))
