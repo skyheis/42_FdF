@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:56:19 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/11 19:56:47 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:15:59 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_count_in_str(char *str, char c)
 	while (*str)
 	{
 		if (*str == c)
-			i++; 
+			i++;
 		str++;
 	}
 	return (i);

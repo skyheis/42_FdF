@@ -3,34 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kichkiro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 18:42:14 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/14 23:21:44 by ggiannit         ###   ########.fr       */
+/*   Created: 2022/10/20 10:51:17 by kichkiro          #+#    #+#             */
+/*   Updated: 2023/01/10 15:41:20 by kichkiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include "libft.h"
+# include <stdbool.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);
-
+void	*ft_free(void **ptr);
 void	*ft_calloc(size_t nmemb, size_t size);
-size_t	ft_strlen_gnl(char *str);
-ssize_t	ft_get_line_size(char *buff_read);
-int		ft_search_bsn(char *buff_read);
-void	*ft_free_null(char **read);
+ssize_t	ft_stridx(char *s, int c);
+char	*ft_strappend(char *s1, char *s2, bool free_s1, bool free_s2);
+char	*ft_split_substr(char **s, int start, size_t len, char split);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:04 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/12 09:33:25 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:07:39 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int main(void)
 	mlx_key_hook(vars->win, ft_if_close, (void *)vars);
 	mlx_hook(vars->win, 17, 0, ft_if_close_x, (void *)vars);
 	mlx_mouse_hook(vars->win, ft_draw, (void *)vars);
-	mlx_string_put(vars->mlx, vars->win, 42, 42, 0xFF342300, "CIAOOO beppe");
+	mlx_string_put(vars->mlx, vars->win, 42, 42, 0x0, "CIAOOO beppe");
 	mlx_loop(vars->mlx);
 	return (0);
 }
