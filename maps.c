@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:36:35 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/15 00:00:24 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:20:52 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_map	*ft_get_map(char **av)
 		y++;
 		x = 0;
 	}
-}
+}*/
 
 int	main(int ac, char **av)
 {
@@ -105,11 +105,11 @@ int	main(int ac, char **av)
 	map = ft_get_map(av);
 	if (!map)
 		return (2);
-	fdf_print_matrix(map, map->val);
-	write(1, "\n", 1);
-	fdf_print_matrix(map, map->col);
+	//fdf_print_matrix(map, map->val);
+	//write(1, "\n", 1);
+	//fdf_print_matrix(map, map->col);
 	ft_free_matrix_nozero((char ***) &(map->val), map->y);
 	ft_free_matrix_nozero((char ***) &(map->col), map->y);
 	ft_free_null((char **)&map);
 	return (0);
-}*/
+}
