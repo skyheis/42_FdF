@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 23:27:15 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/14 23:14:22 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/19 12:27:20 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void	ft_sleep_kinda(size_t k);
 int		ft_atoi_hex(char *str);
 int		ft_ishex(char *str);
 int		ft_count_in_str(char *str, char c);
+char	*ft_strjoin_free(char *s1, char *s2);
 
 #endif

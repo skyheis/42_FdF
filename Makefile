@@ -6,7 +6,7 @@
 #    By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 17:49:20 by ggiannit          #+#    #+#              #
-#    Updated: 2023/01/07 21:09:55 by ggiannit         ###   ########.fr        #
+#    Updated: 2023/01/17 16:03:48 by ggiannit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MLX_PATH = ../minilibx-linux
 DIRSRCS =
 DIROBJS = obj/
 
-FLSRCS = main.c my_minilibx_utils.c
+FLSRCS = main.c my_minilibx_utils.c maps.c map_utils.c
 
 FLOBJS = ${FLSRCS:.c=.o}
 
@@ -75,7 +75,7 @@ ${NAME}: ${OBJS}
 	@echo "$(YELLOW)- Program Name: $(WHITE)${PRNAME}$(DEF_COLOR)"
 	@echo "$(YELLOW)- Compiler: $(WHITE)${CC}$(DEF_COLOR)"
 	@echo "$(YELLOW)- Flags: $(WHITE)${CFLAGS}$(DEF_COLOR)"
-	@${CC} ${CFLAGS} -L $(ARUSDDIR) -o $(PRNAME) $(OBJS) $(MLXFLAGS)
+	@${CC} ${CFLAGS} -L $(ARUSDDIR) -I $(INCLUDE) -o $(PRNAME) $(OBJS) $(ARINC) $(MLXFLAGS) 
 
 clean:
 	@make -sC libft clean

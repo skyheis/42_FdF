@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:31 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/14 22:58:03 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:17:45 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@
 #  define WIN_HEIGHT 540
 # endif
 
+# define X	0
+# define Y	1
+# define Z	2
+
+typedef struct	s_map
+{
+	char *map_memory;
+	int **val;
+	int **col;
+	int x;
+	int y;
+	int check_x;
+	int zoom;
+	int max_n;
+	int max_e;
+	int max_s;
+	int max_w;
+}				t_map;
+
 typedef struct	s_data
 {
 	void	*img;
@@ -40,26 +59,14 @@ typedef struct	s_mlxvars
 	void	*mlx;
 	void	*win;
 	t_data	*img;
+	t_map	*map;
 }				t_mlxvars;
-
-typedef struct	s_map
-{
-	int **val;
-	int **col;
-	int x;
-	int y;
-	int max_n;
-	int max_e;
-	int max_s;
-	int max_w;
-}				t_map;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /* map */
+t_map	*ft_get_map(char **av);
 int	ft_check_each_line(t_map *map, char *line);
-//int	ft_alloc_val(t_map *map, char *line);
-//int	ft_alloc_col(t_map *map, char *line);
 int	ft_alloc_elem(t_map *map, char *line);
 
 #endif
