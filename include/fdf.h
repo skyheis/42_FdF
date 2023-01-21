@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:31 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/21 16:59:41 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:48:11 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,15 @@ typedef struct	s_dot
 
 typedef struct	s_map
 {
-	char *map_memory;
-	t_dot **map;
-	int **col;
-	int x;
-	int y;
-	int check_x;
-	int zoom;
-	int max_n;
-	int max_e;
-	int max_s;
-	int max_w;
+	char	*map_memory;
+	t_dot	**map;
+	int		**col;
+	int		x;
+	int		y;
+	int		check_x;
+	int		zoom;
+	int		zx;
+	int		zy;
 }				t_map;
 
 typedef struct	s_data

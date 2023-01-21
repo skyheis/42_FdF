@@ -1,79 +1,72 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   map_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:06:25 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/18 14:54:38 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:58:58 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-/*int	ft_alloc_elem(t_map *map, char *line)
+void	ft_elem_atoi(t_map *map, int kx, int ky)
 {
-	static int	n_line = 0;
-	int			n_elem;
-	int			i;
+	static int	i = 0;
 
-	i = 0;
-	n_elem = 0;
-	map->val[n_line] = (int *) ft_calloc(map->x, sizeof(int));
-	map->col[n_line] = (int *) ft_calloc(map->x, sizeof(int));
-	while (line[i] == 32)
+	while (map->map_memory[i] == 32 || map->map_memory[i] == '\n')
 		i++;
-	while (line[i] != 10 && line[i])
-	{
-		map->val[n_line][n_elem] = ft_atoi(&line[i]);
-		while (line[i] != ',' && line[i] != 32 && line[i] != 10 && line[i])
-			i++;
-		if (line[i] == ',')
-			map->col[n_line][n_elem++] = ft_atoi_hex(&line[i + 1]);
-		else
-			map->col[n_line][n_elem++] = -1;
-		while (line[i] != 32 && line[i] != 10 && line[i])
-			i++;
-		while (line[i] == 32 && line[i] != 10 && line[i])
-			i++;
-	}
-	return (++n_line);
-}*/
-
-int	ft_alloc_elem(t_map *map, char *line)
-{
-	static int	n_line = 0;
-	int			n_elem;
-	int			i;
-
-	i = 0;
-	n_elem = 0;
-	map->val[n_line] = (int *) ft_calloc(map->x, sizeof(int));
-	map->col[n_line] = (int *) ft_calloc(map->x, sizeof(int));
-	while (line[i] == 32)
+	map->map[ky][kx].z = ft_atoi(&map->map_memory[i]);
+	while (map->map_memory[i] >= '0' && map->map_memory[i] <= '9')
 		i++;
-	while (line[i] != 10 && line[i])
-	{
-		map->val[n_line][n_elem] = ft_atoi(&line[i]);
-		while (line[i] != ',' && line[i] != 32 && line[i] != 10 && line[i])
-			i++;
-		if (line[i] == ',')
-			map->col[n_line][n_elem++] = ft_atoi_hex(&line[i + 1]);
-		else
-			map->col[n_line][n_elem++] = -1;
-		while (line[i] != 32 && line[i] != 10 && line[i])
-			i++;
-		while (line[i] == 32 && line[i] != 10 && line[i])
-			i++;
-	}
-	return (++n_line);
+	if (map->map_memory[i] == ',')
+		map->map[ky][kx].col = ft_atoi_hex(&map->map_memory[i + 1]);
+	else
+		map->map[ky][kx].col = -1;
+	while (map->map_memory[i] != 32 && map->map_memory[i] != 10 &&
+			map->map_memory[i])
+		i++;
 }
 
-int	ft_check_el(char const *line, int i)
+int	ft_popol_map(t_map *map)
 {
-	int	old_i;
+	int	kx;
+	int	ky;
 
+	ky = 0;
+	while (ky < map->y)
+	{
+		kx = 0;
+		map->map[ky] = (t_dot *) ft_calloc(map->x, sizeof(t_dot));
+		if (!map->map[ky])
+			return (0);
+		while (kx < map->x)
+		{
+			ft_elem_atoi(map, kx, ky);
+			kx++;
+		}
+		ky++;
+	}
+	return (1);
+}
+
+void	ft_free_map(t_map *map)
+{
+	ft_free_matrix_nozero((char ***) &(map->map), map->y);
+	ft_free_null((char **)&map);
+}
+
+int	ft_check_elem(char *line)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	k = 0;
+	if (line[i] == '-')
+		i++;
 	while (line[i] != 32 && line[i] != ',' && line[i] != '\n' && line[i] != 0)
 	{
 		if (line[i] < '0' || line[i] > '9')
@@ -82,63 +75,37 @@ int	ft_check_el(char const *line, int i)
 	}
 	if (line[i] != ',')
 		return (i);
-	if (line[++i] != '0' || line[i + 1] != 'x')
+	if (!ft_ishex(&line[++i]))
 		return (-1);
-	i += 2;
-	old_i = i;
 	while (line[i] != 32 && line[i] != '\n' && line[i] != '\0')
-	{
-		if (!ft_strchr("0123456789ABCDEFabcdef", line[i++]))
-			return (-1);
-	}
-	if (i - old_i > 8 || i == old_i)
-		return (-1);
+		i++;
 	return (i);
 }
 
-int	ft_count_el_ncheck(char const *line)
+int	ft_check_n_size_map(t_map *map)
 {
-	int	i;
-	int	n_el;
+	size_t	i;
 
 	i = 0;
-	n_el = 0;
-	while (line[i])
+	while (map->map_memory[i])
 	{
-		while (line[i] == 32)
+		while (map->map_memory[i] == 32)
 			i++;
-		if (line[i] == '\n')
+		if (map->map_memory[i] == '\n' && map->map_memory[i + 1] == '\0')
 			break ;
-		if (line[i] == '-')
+		if (map->map_memory[i] == '\n')
+		{
+			if (map->check_x != map->x)
+				return (0);
+			map->check_x = 0;
+			map->y += 1;
 			i++;
-		if (line[i] < '0' || line[i] > '9')
-			return (-1);
-		i = ft_check_el(line, i);
-		if (i == -1)
-			return (-1);
-		n_el++;
-	}
-	if (n_el == 0)
-		return (-1);
-	return (n_el);
-}
-
-int	ft_check_each_line(t_map *map, char *line)
-{
-	static unsigned char	first = 1;
-
-	if (first)
-	{
-		map->x = ft_count_el_ncheck(line);
-		if (map->x == -1)
+		}
+		if (ft_check_elem(&map->map_memory[i++]) == -1)
 			return (0);
-		first = 0;
-	}
-	else
-	{
-		if (map->x != ft_count_el_ncheck(line))
-			return (0);
-		map->y += 1;
+		map->check_x += 1;
+		while (map->map_memory[i] != 32 && map->map_memory[i] != '\n')
+			i++;
 	}
 	return (1);
 }
