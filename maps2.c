@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:36:35 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/19 17:18:49 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:58:07 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 	ft_free_matrix_nozero((char ***) &(map->col), map->y);
 	ft_free_null((char **)&map);
 */
-# define READ_SIZE	5000
+# define READ_SIZE	1000000
 
 void	ft_set_map_x(t_map *map)
 {
@@ -48,7 +48,7 @@ int	ft_read_map(t_map *map, char *file)
 		return (0);
 	while (b_readed == READ_SIZE)
 	{
-		file_memory = (char *) ft_calloc(READ_SIZE, sizeof(char));
+		file_memory = (char *) ft_calloc(READ_SIZE + 1, sizeof(char));
 		b_readed = read(fd, file_memory, READ_SIZE);
 		if (b_readed == -1)
 			return (0);
@@ -72,11 +72,12 @@ int	ft_check_infile(char *infile)
 	return (0);
 }
 
-int	ft_init_map(t_map *map)
+void	ft_init_map(t_map *map)
 {
 	map->map_memory = NULL;
-	map->val = NULL;
-	map->col = NULL;
+//	map->val = NULL;
+//	map->col = NULL;
+	map->map = NULL;
 	map->x = 0;
 	map->y = 1;
 	map->check_x = 0;
@@ -96,16 +97,16 @@ t_map	*ft_get_map(char **av)
 		return (ft_free_null((char **)&map));
 	if (!ft_check_n_size_map(map))
 		return (NULL);
-	map->val = (int **) ft_calloc(map->y, sizeof(int *));
-	map->col = (int **) ft_calloc(map->y, sizeof(int *));
-	if (!map->col || !map->val)
+	map->map = (t_dot **) ft_calloc(map->y, sizeof(t_dot *));
+	if (!map->map)
 		return (NULL);
-
-		return (ft_free_null((char **)&map));
+	if (!ft_popol_map(map))
+		return (NULL);
+	ft_free_null(&map->map_memory);
 	return (map);
 }
 
-/*void	fdf_print_matrix(t_map *maps, int **mat)
+void	fdf_print_matrix(t_map *maps, t_dot **mat)
 {
 	int	x;
 	int	y;
@@ -116,14 +117,14 @@ t_map	*ft_get_map(char **av)
 	{
 		while (x < maps->x)
 		{
-			ft_printf("%i ", mat[y][x]);
+			ft_printf("%i,%i ", mat[y][x].z, mat[y][x].col);
 			x++;
 		}
 		ft_printf("\n");
 		y++;
 		x = 0;
 	}
-}*/
+}
 
 int	main(int ac, char **av)
 {
@@ -134,11 +135,10 @@ int	main(int ac, char **av)
 	map = ft_get_map(av);
 	if (!map)
 		return (2);
-	//fdf_print_matrix(map, map->val);
+	printf("x is %d\ny is %d\n", map->x, map->y);
+	//fdf_print_matrix(map, map->map);
 	//write(1, "\n", 1);
 	//fdf_print_matrix(map, map->col);
-	ft_free_matrix_nozero((char ***) &(map->val), map->y);
-	ft_free_matrix_nozero((char ***) &(map->col), map->y);
-	ft_free_null((char **)&map);
+	ft_free_map(map);
 	return (0);
 }

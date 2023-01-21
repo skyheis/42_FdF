@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:12:39 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/14 19:19:58 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/20 21:54:12 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_atoi_hex(char *str)
 	if (!str)
 		return (0);
 	atoi = 0;
-	while (str[i])
+	while (str[i] && str[i] != '\n' && str[i] != 32)
 	{
 		atoi = atoi * 16 + ft_give_spot(str[i], "0123456789ABCDEF",
 				"0123456789abcdef");
