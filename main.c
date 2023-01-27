@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:04 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/21 18:30:40 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:15:57 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,23 @@ void	ft_zoom(t_mlxvars *meta)
 
 int	ft_draw_on_image(t_mlxvars *meta)
 {
-	int x;
-	int y;
+	int kx;
+	int ky;
 
-	y = 0;
-	while (y < meta->map->y)
+	ky = 0;
+	while (ky < meta->map->y)
 	{
-		x = 0;
-		while (x < meta->map->x)
+		kx = 0;
+		while (kx < meta->map->x)
 		{
 			my_mlx_pixel_put(meta->img,
-					x * meta->map->zoom + 20, y * meta->map->zoom + 20,
-					meta->map->col[y][x]);
+					(int) meta->map->map[ky][kx].x, (int) meta->map->map[ky][kx].y,
+					meta->map->map[ky][kx].col);
 			//printf("%d ,", meta->map->zoom);
-			x++;
+			kx++;
 		}
 		mlx_put_image_to_window(meta->mlx, meta->win, meta->img->img, 0, 0);
-		y++;
+		ky++;
 	}
 	mlx_put_image_to_window(meta->mlx, meta->win, meta->img->img, 0, 0);
 	return (0);
@@ -108,7 +108,7 @@ int main(int ac, char **av)
 	//ft_zoom(meta);
 	//drawline(meta, 150, 250, 250, 250);
 	mlx_put_image_to_window(meta->mlx, meta->win, meta->img->img, 0, 0);
-	//ft_draw_on_image(meta);
+	ft_draw_on_image(meta);
 	//mlx_string_put(meta->mlx, meta->win, 42, 42, 0x0, "CIAOOO beppe");
 	//mlx_string_put(meta->mlx, meta->win, 42, 42, -1, "CIAOOO beppe");
 	mlx_key_hook(meta->win, ft_if_close, (void *)meta);
