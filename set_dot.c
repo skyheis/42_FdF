@@ -6,16 +6,35 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:34:42 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/27 15:46:38 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/30 22:35:12 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*void	ft_isometric(t_dot *dot, t_map *map)
+{
+	float a;
+	float b;
+	float r;
+	float rp;
+	float rm;
+
+	map->angle = 30;
+	r = map->angle * M_PI / 180;
+	rp = (map->angle + 120) * M_PI / 180;
+	rm = (map->angle - 120) * M_PI / 180;
+	a = dot->x * cos(r) + dot->y * cos(rp) + dot->z * cos(rm);
+	b = dot->x * sin(r) + dot->y * sin(rp) + dot->z * sin(rm);
+	dot->x = a;
+	dot->y = b;
+}*/
+
 void	ft_isometric(t_dot *dot, t_map *map)
 {
-	dot->x = (dot->x - dot->y) * cos(map->angle) + map->zx;
-	dot->y = (dot->x + dot->y) * sin(map->angle) - dot->z;
+	//map->angle = 45;
+	dot->x = (dot->x - dot->y) * cos(map->angle * M_PI / 180);
+	dot->y = (dot->x + dot->y) * sin(map->angle * M_PI / 180) - dot->z;
 	//printf("x %f  y %f     zx %i zy %i\n", dot->x, dot->y, map->zx, map->zy);
 }
 
@@ -138,6 +157,9 @@ int	ft_set_dot(t_map *map)
 			map->map[ky][kx].x = (float) (a * map->zoom);
 			map->map[ky][kx].y = (float) (b * map->zoom);
 			ft_isometric(&map->map[ky][kx], map);
+			map->map[ky][kx].x += map->zx;
+			map->map[ky][kx].y += map->zy;
+			//printf("x %f y %f\n", map->map[0][0].x, map->map[0][0].y);
 			//ft_fill_minmax(map, (int) map->map[ky][kx].x, (int) map->map[ky][kx].y);
 			//what if lo faccio qua il check no perche' non se scendere o dezoom
 			kx++;

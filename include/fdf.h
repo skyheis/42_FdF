@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:31 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/27 14:58:38 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/30 21:49:16 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,9 @@ void	ft_free_map(t_map *map);
 /* set dot */
 int		ft_set_dot(t_map *map);
 void	ft_set_zoom_td(t_map *map);
+
+/* draw_map */
+void	ft_draw_map(t_mlxvars *meta, t_dot **map);
+
 
 #endif

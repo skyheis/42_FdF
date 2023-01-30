@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:04 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/27 15:15:57 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/30 22:36:08 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,12 @@ int main(int ac, char **av)
 			&meta->img->line_length, &meta->img->endian);
 	//ft_zoom(meta);
 	//drawline(meta, 150, 250, 250, 250);
-	mlx_put_image_to_window(meta->mlx, meta->win, meta->img->img, 0, 0);
 	ft_draw_on_image(meta);
+	ft_draw_map(meta, meta->map->map);
+	mlx_put_image_to_window(meta->mlx, meta->win, meta->img->img, 0, 0);
 	//mlx_string_put(meta->mlx, meta->win, 42, 42, 0x0, "CIAOOO beppe");
 	//mlx_string_put(meta->mlx, meta->win, 42, 42, -1, "CIAOOO beppe");
+	
 	mlx_key_hook(meta->win, ft_if_close, (void *)meta);
 	mlx_hook(meta->win, 17, 0, ft_if_close_x, (void *)meta);
 	//mlx_mouse_hook(meta->win, ft_draw, (void *)meta);
