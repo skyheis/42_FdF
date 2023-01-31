@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:34:42 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/30 22:35:12 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:07:30 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_isometric(t_dot *dot, t_map *map)
 {
 	//map->angle = 45;
 	dot->x = (dot->x - dot->y) * cos(map->angle * M_PI / 180);
-	dot->y = (dot->x + dot->y) * sin(map->angle * M_PI / 180) - dot->z;
+	dot->y = (dot->x + dot->y) * sin(map->angle * M_PI / 180) - dot->z;// * (map->zoom / 2);
 	//printf("x %f  y %f     zx %i zy %i\n", dot->x, dot->y, map->zx, map->zy);
 }
 
@@ -91,30 +91,19 @@ void	ft_set_zoom_td(t_map *map)
 	}
 }*/
 
-/*int	ft_set_dot(t_map *map)
+void	ft_rotate_tmp(t_dot *dot, t_map *map)
 {
-	int	a;
-	int	b;
-	int kx;
-	int ky;
+	float a;
+	float b;
+	double tate;
 
-	ky = 0;
-	a = (map->x / 2);
-	b = (map->y / 2);
-	while (ky < map->y)
-	{
-		kx = 0;
-		while (kx < map->x)
-		{
-			map->map[ky][kx].x = kx - a + (map->zoom * (kx + a));
-			map->map[ky][kx].y = ky - b + map->zy;
-			kx++;
-		}
-		ky++;
-	}
-	fdf_print_dot(map, map->map);
-	return (0);
-}*/
+	(void) map;
+	tate = -90 * M_PI / 180;
+	a = dot->x * cos(tate) - dot->y * sin(tate);
+	b = dot->x * sin(tate) + dot->y * cos(tate);
+	dot->x = a;
+	dot->y = b;
+}
 
 int	ft_reset_minmax(t_map *map)
 {
@@ -152,10 +141,9 @@ int	ft_set_dot(t_map *map)
 		a = -1 * (map->x / 2);
 		while (kx < map->x)
 		{
-			//map->map[ky][kx].x = (float) (a * map->zoom) + map->zx;
-			//map->map[ky][kx].y = (float) (b * map->zoom) + map->zy;
 			map->map[ky][kx].x = (float) (a * map->zoom);
 			map->map[ky][kx].y = (float) (b * map->zoom);
+			ft_rotate_tmp(&map->map[ky][kx], map);
 			ft_isometric(&map->map[ky][kx], map);
 			map->map[ky][kx].x += map->zx;
 			map->map[ky][kx].y += map->zy;

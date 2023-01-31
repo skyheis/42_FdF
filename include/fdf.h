@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:31 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/30 21:49:16 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/31 18:37:34 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct	s_dot
 {
 	float	x;
 	float	y;
-	int	z;
+	int		z;
 	int		col;
 }				t_dot;
 
@@ -47,7 +47,6 @@ typedef struct	s_map
 {
 	char	*map_memory;
 	t_dot	**map;
-	int		**col;
 	int		x;
 	int		y;
 	int		check_x;
@@ -93,8 +92,15 @@ void	ft_free_map(t_map *map);
 int		ft_set_dot(t_map *map);
 void	ft_set_zoom_td(t_map *map);
 
+/* key hooker */
+int ft_if_close_x(t_mlxvars *meta);
+int ft_key_press(int key_code, t_mlxvars *meta);
+
 /* draw_map */
 void	ft_draw_map(t_mlxvars *meta, t_dot **map);
 
+/* clean close */
+void	ft_free_map(t_map *map);
+void	ft_clean_all(t_mlxvars *meta);
 
 #endif

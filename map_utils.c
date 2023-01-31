@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:06:25 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/24 18:00:11 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:11:12 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ int	ft_popol_map(t_map *map)
 		ky++;
 	}
 	return (1);
-}
-
-void	ft_free_map(t_map *map)
-{
-	ft_free_matrix_nozero((char ***) &(map->map), map->y);
-	ft_free_null((char **)&map);
 }
 
 int	ft_check_elem(char *line)

@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:36:35 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/30 22:40:56 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/01/31 18:29:00 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ void	ft_init_map(t_map *map)
 	map->x = 0;
 	map->y = 1;
 	map->check_x = 0;
-	map->zoom = 1;
+	map->zoom = 6;
 	//map->angle = 0.523599;
 	//map->angle = 0.8;
 	//map->angle = 0.785398;
-	map->angle =45;
+	map->angle = 40;
 	//map->angle = 0.40009;
 	map->zx = WIN_WIDE >> 1;
-	map->zy = WIN_HEIGHT >> 1;
+	map->zy = (WIN_HEIGHT >> 1) + 150;
 	//questo serve per trovare i limiti
 	map->min_x = WIN_WIDE;
 	map->min_y = WIN_HEIGHT;
@@ -114,10 +114,9 @@ t_map	*ft_get_map(char **av)
 	if (!ft_popol_map(map))
 		return (NULL);
 	ft_free_null(&map->map_memory);
-	printf("x is %d\ny is %d\n", map->x, map->y);
+	//printf("x is %d\ny is %d\n", map->x, map->y);
 	//ft_set_zoom_td(map);
-	map->zoom = 2;
-	ft_set_dot(map);
+	//ft_set_dot(map);
 	return (map);
 }
 

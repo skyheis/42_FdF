@@ -6,7 +6,7 @@
 #    By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 17:49:20 by ggiannit          #+#    #+#              #
-#    Updated: 2023/01/30 21:54:12 by ggiannit         ###   ########.fr        #
+#    Updated: 2023/01/31 18:37:59 by ggiannit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ MLX_PATH = ../minilibx-linux
 DIRSRCS =
 DIROBJS = obj/
 
-FLSRCS = main.c my_minilibx_utils.c maps.c map_utils.c set_dot.c draw_map.c
+FLSRCS = main.c my_minilibx_utils.c maps.c map_utils.c set_dot.c draw_map.c \
+		 clean_close.c key_hooker.c
 
 FLOBJS = ${FLSRCS:.c=.o}
 
