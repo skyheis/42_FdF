@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:00:08 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/01 16:27:49 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/02 15:11:10 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ void	ft_key_press_one(int key_code, t_mlxvars *meta)
 	else if (key_code == KONE)
 		meta->map->vision = 1;
 	else if (key_code == R_KEY)
-		meta->map->rotation -= 5;
+		meta->map->alpha -= 90;
+//	else if (key_code == T_KEY)
+//		meta->map->beta -= 90;
+//	else if (key_code == Y_KEY)
+//		meta->map->gamma -= 90;
 }
 
 int ft_key_press(int key_code, t_mlxvars *meta)

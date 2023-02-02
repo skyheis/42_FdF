@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:04 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/01 15:33:49 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:04:22 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int ac, char **av)
 	if (!meta->mlx)
 		return (1);
 	meta->win = mlx_new_window(meta->mlx, WIN_WIDE, WIN_HEIGHT, "FdF ggiannit");
+	//ft_set_zoom_td(meta->map);
 	ft_set_img(meta, meta->img);//, ft_isometric);
 	//mlx_string_put(meta->mlx, meta->win, 42, 42, 0x0, "CIAOOO beppe");
 	//mlx_string_put(meta->mlx, meta->win, 42, 42, -1, "CIAOOO beppe");

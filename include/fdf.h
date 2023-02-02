@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:31 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/01 15:35:17 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/02 15:02:03 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ typedef struct	s_map
 	int				check_x;
 	int				zoom;
 	double			angle;
-	int				rotation;
+	int				alpha;
+	int				beta;
+	int				gamma;
 	unsigned char	vision;
 	int				zx;
 	int				zy;
@@ -103,6 +105,8 @@ void	ft_set_zoom_td(t_map *map);
 void	ft_top(t_dot *dot, t_map *map);
 void	ft_isometric(t_dot *dot, t_map *map);
 void	ft_rotate_z(t_dot *dot, t_map *map);
+void	ft_rotate_x(t_dot *dot, t_map *map);
+void	ft_rotate_y(t_dot *dot, t_map *map);
 
 /* key hooker */
 int ft_if_close_x(t_mlxvars *meta);

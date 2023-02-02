@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:34:42 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/01 12:13:11 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:29:22 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,16 @@ void	ft_fill_minmax(t_map *map, int the_x, int the_y)
 		map->min_y = the_y;
 }
 
+void	ft_bending(t_dot *dot, t_map *map)
+{
+	float r;
+
+	(void) map;
+	r = sqrt(dot->x * dot->x + dot->y * dot->y);
+	dot->x = dot->x * (1 + 0.1 * (r * r));
+	dot->y = dot->y * (1 + 0.1 * (r * r));
+}
+
 int	ft_set_dot(t_map *map, void (*ft_vision)(t_dot *, t_map *))
 {
 	int	a;
@@ -87,11 +97,14 @@ int	ft_set_dot(t_map *map, void (*ft_vision)(t_dot *, t_map *))
 			map->map[ky][kx].x = (float) (a * map->zoom);
 			map->map[ky][kx].y = (float) (b * map->zoom);
 			ft_rotate_z(&map->map[ky][kx], map);
+			ft_rotate_x(&map->map[ky][kx], map);
+			ft_rotate_y(&map->map[ky][kx], map);
 			ft_vision(&map->map[ky][kx], map);
+			ft_bending(&map->map[ky][kx], map);
 			map->map[ky][kx].x += map->zx;
 			map->map[ky][kx].y += map->zy;
 			//printf("x %f y %f\n", map->map[0][0].x, map->map[0][0].y);
-			//ft_fill_minmax(map, (int) map->map[ky][kx].x, (int) map->map[ky][kx].y);
+			ft_fill_minmax(map, (int) map->map[ky][kx].x, (int) map->map[ky][kx].y);
 			//what if lo faccio qua il check no perche' non se scendere o dezoom
 			kx++;
 			a++;

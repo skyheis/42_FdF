@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:36:35 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/01 15:16:43 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/02 15:16:51 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ void	ft_init_map(t_map *map)
 	map->check_x = 0;
 	map->zoom = 1;
 	map->angle = 60;
-	map->rotation = 0;
+	map->alpha = 0;
+	map->beta = 0;
+	map->gamma = 0;
 	map->vision = 1;
 	map->zx = WIN_WIDE >> 1;
 	map->zy = (WIN_HEIGHT >> 1);
@@ -141,7 +143,7 @@ t_map	*ft_get_map(char **av)
 	if (ac < 2)
 		return (1);
 	map = ft_get_map(av);
-	if (!map)
+if (!map)
 		return (2);
 	printf("x is %d\ny is %d\n", map->x, map->y);
 	//fdf_print_matrix(map, map->map);

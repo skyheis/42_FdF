@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 12:38:42 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/01 15:25:16 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/02 15:14:48 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@
 # define S_KEY 115
 # define D_KEY 100
 
+
+# define Q_KEY 113
+# define E_KEY 101
 # define R_KEY 114
+# define T_KEY 116
+# define Y_KEY 121
 # define Z_KEY 122
 # define X_KEY 120
 
