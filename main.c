@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:04 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/02 17:04:22 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:16:21 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,25 @@ int	ft_draw(int button, int x, int y, t_mlxvars *meta)
 	return (0);
 }
 
-void	ft_set_img(t_mlxvars *meta, t_data *img)//void (*ft_vision)(t_dot *, t_map *))
+void	ft_traspernt_img(t_data *img)
+{
+	int	a;
+	int	b;
+
+	b = 0;
+	while (b < WIN_HEIGHT)
+	{
+		a = 0;
+		while (a < WIN_WIDE / 6)
+		{
+			my_mlx_pixel_put(img, a, b, 0x202020);
+			a++;
+		}
+		b++;
+	}
+}
+
+void	ft_set_img(t_mlxvars *meta, t_data *img)
 {
 	if (img->img)
 		mlx_destroy_image(meta->mlx, img->img);
@@ -39,9 +57,17 @@ void	ft_set_img(t_mlxvars *meta, t_data *img)//void (*ft_vision)(t_dot *, t_map 
 		ft_set_dot(meta->map, ft_isometric);
 	else if (meta->map->vision == 0)
 		ft_set_dot(meta->map, ft_top);
+	else if (meta->map->vision == 9)
+		ft_set_dot(meta->map, ft_xtoz);
+	else if (meta->map->vision == 8)
+		ft_set_dot(meta->map, ft_ytoz);
+	//else
+	//	return ;
+	ft_traspernt_img(img);
+	if (meta->map->vision == 2)
+		ft_ortographic(meta);
 	else
-		return ;
-	ft_draw_map(meta, meta->map->map);
+		ft_draw_map(meta, meta->map->map);
 	mlx_put_image_to_window(meta->mlx, meta->win, meta->img->img, 0, 0);
 }
 
@@ -49,7 +75,8 @@ int	main(int ac, char **av)
 {
 	t_mlxvars	*meta;
 
-	(void)ac;
+	if (ac != 2)
+		return (1);
 	meta = (t_mlxvars *) malloc(sizeof(t_mlxvars));
 	meta->map = ft_get_map(av);
 	meta->img = (t_data *) malloc(sizeof(t_data));
@@ -59,12 +86,11 @@ int	main(int ac, char **av)
 	meta->mlx = mlx_init();
 	if (!meta->mlx)
 		return (1);
-	meta->win = mlx_new_window(meta->mlx, WIN_WIDE, WIN_HEIGHT, "FdF ggiannit");
-	//ft_set_zoom_td(meta->map);
-	ft_set_img(meta, meta->img);//, ft_isometric);
-	//mlx_string_put(meta->mlx, meta->win, 42, 42, 0x0, "CIAOOO beppe");
+	meta->win = mlx_new_window(meta->mlx, WIN_WIDE, WIN_HEIGHT,
+			"FdF - ggiannit");
+	ft_set_zoom_td(meta->map);
+	ft_set_img(meta, meta->img);
 	//mlx_string_put(meta->mlx, meta->win, 42, 42, -1, "CIAOOO beppe");
-	//mlx_key_hook(meta->win, ft_if_close, (void *)meta);
 	mlx_hook(meta->win, 17, 0L, ft_if_close_x, (void *)meta);
 	mlx_hook(meta->win, 2, 1L<<0, ft_key_press, (void *)meta);
 	mlx_mouse_hook(meta->win, ft_mouse_press, (void *)meta);

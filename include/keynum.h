@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 12:38:42 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/02 15:14:48 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:19:07 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@
 # define KTHREE	51
 # define KFOUR	52
 # define KFIVE	53
+# define KSIX	54
+# define KSEVEN	55
+# define KOTTO	56
+# define KNINE	57
 
 
 /* MOUSE */

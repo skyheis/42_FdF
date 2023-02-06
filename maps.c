@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:36:35 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/02 15:16:51 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/06 13:15:03 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,22 @@ void	ft_init_map(t_map *map)
 	map->check_x = 0;
 	map->zoom = 1;
 	map->angle = 60;
-	map->alpha = 0;
+	map->alpha = -90;
 	map->beta = 0;
 	map->gamma = 0;
 	map->vision = 1;
-	map->zx = WIN_WIDE >> 1;
-	map->zy = (WIN_HEIGHT >> 1);
+	map->zx = (WIN_WIDE >> 1) + WIN_WIDE / 12;
+	map->zy = WIN_HEIGHT >> 1;
 	//questo serve per trovare i limiti
 	map->min_x = WIN_WIDE;
 	map->min_y = WIN_HEIGHT;
 	map->max_x = -1;
 	map->max_y = -1;
-	//ricorda di freeare
 	map->minmax = (int *) ft_calloc(4 , sizeof(int));
-	map->minmax[MINX] = WIN_WIDE / 10;
-	map->minmax[MINY] = WIN_HEIGHT / 10;
-	map->minmax[MAXX] = WIN_WIDE * 0.9;
-	map->minmax[MAXY] = WIN_HEIGHT * 0.9;
+	map->minmax[MINX] = WIN_WIDE / 18;
+	map->minmax[MINY] = WIN_HEIGHT / 18;
+	map->minmax[MAXX] = WIN_WIDE - map->minmax[MINX];
+	map->minmax[MAXY] = WIN_HEIGHT - map->minmax[MINY];
 }
 
 t_map	*ft_get_map(char **av)

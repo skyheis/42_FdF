@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:31 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/02 15:02:03 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:12:38 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #  define WIN_WIDE 1920
 # endif
 # ifndef WIN_HEIGHT 
-#  define WIN_HEIGHT 1080
+#  define WIN_HEIGHT 995
 # endif
 
 # define READ_SIZE	1000000
@@ -103,6 +103,8 @@ void	ft_set_zoom_td(t_map *map);
 
 /* geometry */
 void	ft_top(t_dot *dot, t_map *map);
+void	ft_ytoz(t_dot *dot, t_map *map);
+void	ft_xtoz(t_dot *dot, t_map *map);
 void	ft_isometric(t_dot *dot, t_map *map);
 void	ft_rotate_z(t_dot *dot, t_map *map);
 void	ft_rotate_x(t_dot *dot, t_map *map);
@@ -114,7 +116,11 @@ int ft_key_press(int key_code, t_mlxvars *meta);
 int ft_mouse_press(int key_code, int x, int y, t_mlxvars *meta);
 
 /* draw_map */
+void	ft_bresenham(t_mlxvars *meta, t_dot one, t_dot two);
 void	ft_draw_map(t_mlxvars *meta, t_dot **map);
+
+/* ortograpihc */
+void	ft_ortographic(t_mlxvars *meta);
 
 /* clean close */
 void	ft_free_map(t_map *map);

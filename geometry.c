@@ -6,11 +6,24 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 12:04:39 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/02 15:00:16 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:33:43 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	ft_ytoz(t_dot *dot, t_map *map)
+{
+	(void) map;
+	dot->y = -dot->z * map->zoom / 2;
+}
+
+void	ft_xtoz(t_dot *dot, t_map *map)
+{
+	(void) map;
+	//dot->x = -dot->z;
+	dot->x = -dot->z * map->zoom / 2;
+}
 
 void	ft_top(t_dot *dot, t_map *map)
 {
