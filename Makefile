@@ -6,7 +6,7 @@
 #    By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 17:49:20 by ggiannit          #+#    #+#              #
-#    Updated: 2023/02/07 17:30:59 by ggiannit         ###   ########.fr        #
+#    Updated: 2023/02/07 17:41:00 by ggiannit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,9 +100,9 @@ libftfclean:
 re: fclean all
 
 minilibx:
-	@make -c $(MLX_PATH)
-	@cp $(MLX_PATH)/mlx.h $(INLUDE)/mlx.h
-	@cp $(MLX_PATH)/libmlx_Linux.a $(INLUDE)/libmlx.a
+	@make -C $(MLX_PATH)
+	@cp $(MLX_PATH)/mlx.h $(INCLUDE)/mlx.h
+	@cp $(MLX_PATH)/libmlx_Linux.a $(ARUSDDIR)/libmlx.a
 
 .PHONY: all clean fclean re starting .c.o libft libftclean libftfclean minilibx
 .SUFFIXES: .c .o 
