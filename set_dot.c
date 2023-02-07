@@ -6,13 +6,11 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:34:42 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/06 13:22:02 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/07 09:46:10 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-// NEEDED
 
 void	ft_set_zoom_td(t_map *map)
 {
@@ -56,17 +54,6 @@ void	ft_fill_minmax(t_map *map, int the_x, int the_y)
 	if (the_y < map->min_y)
 		map->min_y = the_y;
 }
-
-/*void	ft_bending(t_dot *dot, t_map *map)
-{
-	float r;
-
-	(void) map;
-	r = sqrt(dot->x * dot->x + dot->y * dot->y);
-	dot->x = dot->x * (1 + 0.1 * (r * r));
-	dot->y = dot->y * (1 + 0.1 * (r * r));
-			//ft_bending(&map->map[ky][kx], map);
-}*/
 
 int	ft_set_dot(t_map *map, void (*ft_vision)(t_dot *, t_map *))
 {

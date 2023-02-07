@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 18:00:08 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/06 16:15:18 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/06 21:15:05 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int ft_if_close_x(t_mlxvars *meta)
 void	ft_key_press_one(int key_code, t_mlxvars *meta)
 {
 	if (key_code == W_KEY)
-		meta->map->zy -= 5;
+		meta->map->zy -= 20;
 	else if (key_code == A_KEY)
-		meta->map->zx -= 5;
+		meta->map->zx -= 20;
 	else if (key_code == S_KEY)
-		meta->map->zy += 5;
+		meta->map->zy += 20;
 	else if (key_code == D_KEY)
-		meta->map->zx += 5;
+		meta->map->zx += 20;
 	else if (key_code == Z_KEY)
 		meta->map->angle += 5;
 	else if (key_code == X_KEY)

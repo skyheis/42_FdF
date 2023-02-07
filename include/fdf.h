@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:31 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/06 16:12:38 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/07 09:45:45 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ void	ft_free_map(t_map *map);
 /* set dot */
 int		ft_set_dot(t_map *map, void (*ft_vision)(t_dot *, t_map *));
 void	ft_set_zoom_td(t_map *map);
+int		ft_reset_minmax(t_map *map);
+void	ft_fill_minmax(t_map *map, int the_x, int the_y);
 
 /* geometry */
 void	ft_top(t_dot *dot, t_map *map);
