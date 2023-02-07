@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:36:35 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/06 22:00:09 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:14:14 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,11 @@ void	ft_init_map(t_map *map)
 	map->vision = 1;
 	map->zx = (WIN_WIDE >> 1) + WIN_WIDE / 12;
 	map->zy = WIN_HEIGHT >> 1;
-	//questo serve per trovare i limiti
 	map->min_x = WIN_WIDE;
 	map->min_y = WIN_HEIGHT;
 	map->max_x = -1;
 	map->max_y = -1;
-	map->minmax = (int *) ft_calloc(4 , sizeof(int));
+	map->minmax = (int *) ft_calloc(4, sizeof(int));
 	map->minmax[MINX] = WIN_WIDE / 18;
 	map->minmax[MINY] = WIN_HEIGHT / 18;
 	map->minmax[MAXX] = WIN_WIDE - map->minmax[MINX];

@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 12:04:39 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/06 16:33:43 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:10:08 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_ytoz(t_dot *dot, t_map *map)
 void	ft_xtoz(t_dot *dot, t_map *map)
 {
 	(void) map;
-	//dot->x = -dot->z;
 	dot->x = -dot->z * map->zoom / 2;
 }
 
@@ -53,32 +52,17 @@ void	ft_rotate_z(t_dot *dot, t_map *map)
 	dot->y = b;
 }
 
-void	ft_rotate_x(t_dot *dot, t_map *map)
+/*void	ft_sphere(t_dot *dot, t_map *map)
 {
-	float	a;
-	float	b;
-	double	beta;
+	float x_norm;
+	float y_norm;
+	float theta;
+	float phi;
 
-	if (map->beta == 0)
-		return ;
-	beta = map->beta * M_PI / 180;
-	a = dot->y * cos(beta) + dot->z * sin(beta);
-	b = -dot->y * sin(beta) + dot->z * cos(beta);
-	dot->y = a;
-	dot->z = b;
-}
-
-void	ft_rotate_y(t_dot *dot, t_map *map)
-{
-	float	a;
-	float	b;
-	double	gamma;
-
-	if (map->gamma == 0)
-		return ;
-	gamma = map->gamma * M_PI / 180;
-	a = dot->x * cos(gamma) + dot->z * sin(gamma);
-	b = -dot->x * sin(gamma) + dot->z * cos(gamma);
-	dot->x = a;
-	dot->z = b;
-}
+	x_norm = dot->x / map->x;
+	y_norm = dot->y / map->y;
+	theta = y_norm * M_PI;
+	phi = x_norm * 2 * M_PI;
+	dot->x = ((map->x / (2 * M_PI) + 500) + dot->z) * sin(theta) * cos(phi);
+	dot->y = ((map->x / (2 * M_PI) + 500) + dot->z) * sin(theta) * sin(phi);
+}*/

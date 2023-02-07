@@ -6,33 +6,11 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:34:42 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/07 09:46:10 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:25:00 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	ft_set_zoom_td(t_map *map)
-{
-	int	diff_y;
-
-	map->zoom = (WIN_WIDE - (WIN_WIDE / 10)) / (map->x);
-	ft_set_dot(map, ft_isometric);
-	while (map->min_x < map->minmax[MINX] || map->max_x > map->minmax[MAXX])
-	{
-		map->zoom -= 1;
-		ft_set_dot(map, ft_isometric);
-	}
-	while (map->min_y < map->minmax[MINY])
-	{
-		diff_y = abs(map->min_y - map->minmax[MINY]);
-		if (diff_y + map->max_y < map->minmax[MAXY])
-			map->zy += diff_y;
-		else
-			map->zoom -= 1;
-		ft_set_dot(map, ft_isometric);
-	}
-}
 
 int	ft_reset_minmax(t_map *map)
 {
@@ -55,12 +33,23 @@ void	ft_fill_minmax(t_map *map, int the_x, int the_y)
 		map->min_y = the_y;
 }
 
+void	ft_set_dot_utils(t_map *map, void (*ft_vision)(t_dot *, t_map *),
+		int ky, int kx)
+{
+	ft_rotate_z(&map->map[ky][kx], map);
+	ft_vision(&map->map[ky][kx], map);
+	map->map[ky][kx].x += map->zx;
+	map->map[ky][kx].y += map->zy;
+	ft_fill_minmax(map, (int) map->map[ky][kx].x,
+		(int) map->map[ky][kx].y);
+}
+
 int	ft_set_dot(t_map *map, void (*ft_vision)(t_dot *, t_map *))
 {
 	int	a;
 	int	b;
-	int kx;
-	int ky;
+	int	kx;
+	int	ky;
 
 	ky = ft_reset_minmax(map);
 	b = -1 * (map->y / 2);
@@ -70,16 +59,9 @@ int	ft_set_dot(t_map *map, void (*ft_vision)(t_dot *, t_map *))
 		a = -1 * (map->x / 2);
 		while (kx < map->x)
 		{
-			map->map[ky][kx].x = (float) (a * map->zoom);
-			map->map[ky][kx].y = (float) (b * map->zoom);
-			ft_rotate_z(&map->map[ky][kx], map);
-			ft_rotate_x(&map->map[ky][kx], map);
-			ft_rotate_y(&map->map[ky][kx], map);
-			ft_vision(&map->map[ky][kx], map);
-			map->map[ky][kx].x += map->zx;
-			map->map[ky][kx].y += map->zy;
-			ft_fill_minmax(map, (int) map->map[ky][kx].x,
-					(int) map->map[ky][kx].y);
+			map->map[ky][kx].x = (float)(a * map->zoom);
+			map->map[ky][kx].y = (float)(b * map->zoom);
+			ft_set_dot_utils(map, ft_vision, ky, kx);
 			kx++;
 			a++;
 		}
@@ -87,6 +69,36 @@ int	ft_set_dot(t_map *map, void (*ft_vision)(t_dot *, t_map *))
 		b++;
 	}
 	return (0);
+}
+
+void	ft_set_orto(t_map *map, int new_zx, int new_zy,
+		void (*ft_vision)(t_dot *, t_map *))
+{
+	int	a;
+	int	b;
+	int	kx;
+	int	ky;
+
+	ky = ft_reset_minmax(map);
+	b = -1 * (map->y / 2);
+	while (ky < map->y)
+	{
+		kx = 0;
+		a = -1 * (map->x / 2);
+		while (kx < map->x)
+		{
+			map->map[ky][kx].x = (float)((a++) * map->zoom);
+			map->map[ky][kx].y = (float)(b * map->zoom);
+			ft_vision(&map->map[ky][kx], map);
+			map->map[ky][kx].x += new_zx;
+			map->map[ky][kx].y += new_zy;
+			ft_fill_minmax(map, (int) map->map[ky][kx].x,
+				(int) map->map[ky][kx].y);
+			kx++;
+		}
+		ky++;
+		b++;
+	}
 }
 
 /*void	fdf_print_dot(t_map *maps, t_dot **mat)

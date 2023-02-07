@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 12:38:42 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/06 15:19:07 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:31:50 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 # define KEYNUM_H
 
 # define B_ESC 65307
-# define MIN_KEY 44
-# define MAG_KEY 46
+# define MIN_KEY 45
+# define MAG_KEY 61
 
 # define W_KEY 119
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
-
 
 # define Q_KEY 113
 # define E_KEY 101
@@ -41,7 +40,6 @@
 # define KSEVEN	55
 # define KOTTO	56
 # define KNINE	57
-
 
 /* MOUSE */
 # define ROT_UP		4

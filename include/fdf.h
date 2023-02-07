@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 22:48:31 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/02/07 09:45:45 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:27:25 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,8 @@
 # include "keynum.h"
 # include <math.h>
 
-# ifndef WIN_WIDE 
-#  define WIN_WIDE 1920
-# endif
-# ifndef WIN_HEIGHT 
-#  define WIN_HEIGHT 995
-# endif
+# define WIN_WIDE 1920
+# define WIN_HEIGHT 995
 
 # define READ_SIZE	1000000
 
@@ -37,7 +33,7 @@
 # define MAXX 2
 # define MAXY 3
 
-typedef struct	s_dot
+typedef struct s_dot
 {
 	float	x;
 	float	y;
@@ -45,7 +41,7 @@ typedef struct	s_dot
 	int		col;
 }				t_dot;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char			*map_memory;
 	t_dot			**map;
@@ -67,7 +63,7 @@ typedef struct	s_map
 	int				*minmax;
 }				t_map;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*img;
 	char	*addr;
@@ -76,7 +72,7 @@ typedef struct	s_data
 	int		endian;
 }				t_data;
 
-typedef struct	s_mlxvars
+typedef struct s_mlxvars
 {
 	void	*mlx;
 	void	*win;
@@ -84,24 +80,25 @@ typedef struct	s_mlxvars
 	t_map	*map;
 }				t_mlxvars;
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
 /* main */
-void	ft_set_img(t_mlxvars *meta, t_data *img);//void (*ft_vision)(t_dot *, t_map *))
+void	ft_set_img(t_mlxvars *meta, t_data *img);
 
-/* map */
+/* map and utils */
 t_map	*ft_get_map(char **av);
-int		ft_check_each_line(t_map *map, char *line);
-int		ft_alloc_elem(t_map *map, char *line);
 int		ft_check_n_size_map(t_map *map);
 int		ft_popol_map(t_map *map);
-void	ft_free_map(t_map *map);
 
 /* set dot */
 int		ft_set_dot(t_map *map, void (*ft_vision)(t_dot *, t_map *));
-void	ft_set_zoom_td(t_map *map);
+void	ft_set_orto(t_map *map, int new_zx, int new_zy,
+			void (*ft_vision)(t_dot *, t_map *));
 int		ft_reset_minmax(t_map *map);
 void	ft_fill_minmax(t_map *map, int the_x, int the_y);
+
+/* zoomfix */
+void	ft_set_zoom_td(t_map *map);
+void	ft_orto_zoomfix(t_map *map);
+int		check_zoomfit_down(t_map *map, int new_zx, int new_zy, int k);
 
 /* geometry */
 void	ft_top(t_dot *dot, t_map *map);
@@ -109,23 +106,30 @@ void	ft_ytoz(t_dot *dot, t_map *map);
 void	ft_xtoz(t_dot *dot, t_map *map);
 void	ft_isometric(t_dot *dot, t_map *map);
 void	ft_rotate_z(t_dot *dot, t_map *map);
-void	ft_rotate_x(t_dot *dot, t_map *map);
-void	ft_rotate_y(t_dot *dot, t_map *map);
 
 /* key hooker */
-int ft_if_close_x(t_mlxvars *meta);
-int ft_key_press(int key_code, t_mlxvars *meta);
-int ft_mouse_press(int key_code, int x, int y, t_mlxvars *meta);
+int		ft_if_close_x(t_mlxvars *meta);
+int		ft_key_press(int key_code, t_mlxvars *meta);
+int		ft_mouse_press(int key_code, int x, int y, t_mlxvars *meta);
 
 /* draw_map */
 void	ft_bresenham(t_mlxvars *meta, t_dot one, t_dot two);
 void	ft_draw_map(t_mlxvars *meta, t_dot **map);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /* ortograpihc */
 void	ft_ortographic(t_mlxvars *meta);
+void	ft_greyline_top(t_mlxvars *meta);
+void	ft_greyline_down(t_mlxvars *meta);
+void	ft_greyline_right(t_mlxvars *meta);
+t_dot	ft_orto_minxdot(t_map *map);
+t_dot	ft_orto_minydot(t_map *map);
 
 /* clean close */
-void	ft_free_map(t_map *map);
-void	ft_clean_all(t_mlxvars *meta);
+int		ft_free_map(t_map *map);
+int		ft_clean_all(t_mlxvars *meta);
+
+/* menu */
+void	ft_menu_top(t_mlxvars *meta);
 
 #endif

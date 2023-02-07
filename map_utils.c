@@ -6,7 +6,7 @@
 /*   By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:06:25 by ggiannit          #+#    #+#             */
-/*   Updated: 2023/01/31 15:11:12 by ggiannit         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:14:43 by ggiannit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_elem_atoi(t_map *map, int kx, int ky)
 		map->map[ky][kx].col = ft_atoi_hex(&map->map_memory[i + 1]);
 	else
 		map->map[ky][kx].col = -1;
-	while (map->map_memory[i] != 32 && map->map_memory[i] != 10 &&
-			map->map_memory[i])
+	while (map->map_memory[i] != 32 && map->map_memory[i] != 10
+		&& map->map_memory[i])
 		i++;
 }
 

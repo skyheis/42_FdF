@@ -6,7 +6,7 @@
 #    By: ggiannit <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 17:49:20 by ggiannit          #+#    #+#              #
-#    Updated: 2023/02/06 16:11:48 by ggiannit         ###   ########.fr        #
+#    Updated: 2023/02/07 17:30:59 by ggiannit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,8 @@ MLX_PATH = ../minilibx-linux
 DIRSRCS =
 DIROBJS = obj/
 
-FLSRCS = main.c my_minilibx_utils.c maps.c map_utils.c set_dot.c draw_map.c \
-		 clean_close.c key_hooker.c geometry.c ortographic.c
+FLSRCS = main.c maps.c map_utils.c set_dot.c draw_map.c zoomfix.c geometry.c \
+		 clean_close.c key_hooker.c ortographic.c orto_utils.c menu.c
 
 FLOBJS = ${FLSRCS:.c=.o}
 
@@ -103,11 +103,6 @@ minilibx:
 	@make -c $(MLX_PATH)
 	@cp $(MLX_PATH)/mlx.h $(INLUDE)/mlx.h
 	@cp $(MLX_PATH)/libmlx_Linux.a $(INLUDE)/libmlx.a
-
-
-#starting:
-#	@echo "$(WHITE)🧙as a wizard, I made appear your $(CYAN) $(PRNAME) $(WHITE)binary!🪄 💫$(DEF_COLOR)"
-#	@sleep 0.1
 
 .PHONY: all clean fclean re starting .c.o libft libftclean libftfclean minilibx
 .SUFFIXES: .c .o 
